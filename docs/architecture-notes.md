@@ -33,3 +33,12 @@ Three private repositories created with scan-on-push enabled:
 
 Images are tagged `latest` and pushed from local builds. ECR's vulnerability
 scan runs automatically on every push.
+## Step 5: IAM Roles and Secrets Manager
+
+- project6-ecs-execution-role: AmazonECSTaskExecutionRolePolicy (pulls
+  images from ECR, writes logs to CloudWatch — used by the ECS agent)
+- project6-ecs-task-role: inline policy scoped to
+  secretsmanager:GetSecretValue on project6/app-secrets only (used by
+  application code inside the container)
+- Secret project6/app-secrets stores JWT_SECRET and REDIS_HOST, injected
+  into containers at runtime rather than hardcoded in the image
