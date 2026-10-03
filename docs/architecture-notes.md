@@ -42,3 +42,10 @@ scan runs automatically on every push.
   application code inside the container)
 - Secret project6/app-secrets stores JWT_SECRET and REDIS_HOST, injected
   into containers at runtime rather than hardcoded in the image
+  ## Step 6: ElastiCache Redis
+
+- Cluster: project6-redis, cache.t3.micro, cluster mode disabled, 0 replicas
+- Deployed in private subnets only, reachable only from ecs-sg via redis-sg
+- Used as a shared session store so any Auth task can validate sessions
+  created by any other task
+  
