@@ -23,3 +23,13 @@ outbound traffic (e.g. pulling images from ECR, calling AWS APIs).
 - **alb-sg**: allows inbound HTTP (80) from the internet (0.0.0.0/0).
 - **ecs-sg**: allows inbound TCP 3000 only from alb-sg — containers are
   unreachable except through the load balancer.
+
+  ## Step 4: ECR
+
+Three private repositories created with scan-on-push enabled:
+- auth-service
+- orders-service
+- notifications-service
+
+Images are tagged `latest` and pushed from local builds. ECR's vulnerability
+scan runs automatically on every push.
