@@ -109,4 +109,11 @@ markdown
   قبل التوجيه، لأن الحاويات تعرض مسارات بدون هذه البادئة
 - target groups تستخدم نوع هدف IP لشبكات Fargate awsvpc، مسار فحص
   الصحة /health
-  
+  ## Step 9: Cloud Map Service Discovery
+
+- Private DNS namespace: project6.local, scoped to project6-vpc
+- Each service registered with a 10s TTL A record:
+  auth.project6.local, orders.project6.local,
+  notifications.project6.local
+- Enables server-to-server calls without going through the ALB,
+  resilient to Fargate task IP changes on restart
